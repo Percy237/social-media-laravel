@@ -11,7 +11,7 @@ class ProfilesController extends Controller
 {
     public function index($user)
     {
-        $user = User::find($user);
+        $user = User::with('profile', "posts")->findOrFail($user);
         return Inertia::render('Dashboard', ['user' => $user]);
     }
 }

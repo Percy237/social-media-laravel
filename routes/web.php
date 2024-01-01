@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,6 +28,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard/{user}', [ProfilesController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard.show');
+Route::get('/p/create', [PostController::class, 'create']);
+Route::post('/p', [PostController::class, 'store'])->name("p");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
