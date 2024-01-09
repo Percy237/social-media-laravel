@@ -30,48 +30,65 @@ const CreatePost = (props) => {
     return (
         <AuthenticatedLayout auth={props.auth} errors={props.errors}>
             <Head title="Create Post" />
-            <h1 className="text-3xl">Add New Post</h1>
-            <form
-                onSubmit={submit}
-                action="/p"
-                method="post"
-                encType="multipart/form-data"
-            >
+            <div className="flex justify-center items-center mt-16">
                 <div>
-                    <InputLabel htmlFor="caption" value="Post Caption" />
+                    <h1 className="text-3xl">Add New Post</h1>
+                    <form
+                        className="mt-3"
+                        onSubmit={submit}
+                        action="/p"
+                        method="post"
+                        encType="multipart/form-data"
+                    >
+                        <div>
+                            <InputLabel
+                                htmlFor="caption"
+                                value="Post Caption"
+                            />
 
-                    <TextInput
-                        id="caption"
-                        name="caption"
-                        value={data.caption}
-                        className="mt-1 block w-full"
-                        autoComplete="caption"
-                        isFocused={true}
-                        onChange={handleOnChange}
-                    />
+                            <TextInput
+                                id="caption"
+                                name="caption"
+                                value={data.caption}
+                                className="mt-1 block w-full"
+                                autoComplete="caption"
+                                isFocused={true}
+                                onChange={handleOnChange}
+                            />
 
-                    <InputError message={errors.caption} className="mt-2" />
+                            <InputError
+                                message={errors.caption}
+                                className="mt-2"
+                            />
+                        </div>
+                        <div className="mt-4">
+                            <InputLabel htmlFor="image" value="Post image" />
+
+                            <TextInput
+                                id="image"
+                                name="image"
+                                type="file"
+                                className="mt-1 block w-full"
+                                onChange={handleOnChange}
+                            />
+
+                            <InputError
+                                message={errors.image}
+                                className="mt-2"
+                            />
+                        </div>
+
+                        <div className="flex items-center justify-end mt-4">
+                            <PrimaryButton
+                                className="ml-4"
+                                disabled={processing}
+                            >
+                                Add new post
+                            </PrimaryButton>
+                        </div>
+                    </form>
                 </div>
-                <div className="mt-4">
-                    <InputLabel htmlFor="image" value="Post image" />
-
-                    <TextInput
-                        id="image"
-                        name="image"
-                        type="file"
-                        className="mt-1 block w-full"
-                        onChange={handleOnChange}
-                    />
-
-                    <InputError message={errors.image} className="mt-2" />
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Add new post
-                    </PrimaryButton>
-                </div>
-            </form>
+            </div>
         </AuthenticatedLayout>
     );
 };
